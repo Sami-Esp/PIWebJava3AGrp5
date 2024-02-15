@@ -25,6 +25,9 @@ class Reclamation
     #[ORM\Column(length: 255)]
     private ?string $statut = null;
 
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $date_en_jour = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -62,6 +65,18 @@ class Reclamation
     public function setStatut(string $statut): static
     {
         $this->statut = $statut;
+
+        return $this;
+    }
+
+    public function getDateEnJour(): ?\DateTimeInterface
+    {
+        return $this->date_en_jour;
+    }
+
+    public function setDateEnJour(\DateTimeInterface $date_en_jour): static
+    {
+        $this->date_en_jour = $date_en_jour;
 
         return $this;
     }
