@@ -1,3 +1,6 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+# index:
+#     path: /
+#     controller: App\Controller\RefaultController::index
+#     methods: ['GET']
+
+# Ajoutez les routes pour les autres actions (edit, update, delete) ici

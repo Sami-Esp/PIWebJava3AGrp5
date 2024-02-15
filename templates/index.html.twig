@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Réclamations{% endblock %}
+
+{% block body %}
+    <h1>Liste des Réclamations</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Contenue</th>
+                <th scope="col">Statut</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reclamation in reclamations %}
+                <tr>
+                    <td>{{ reclamation.id }}</td>
+                    <td>{{ reclamation.contenue }}</td>
+                    <td>{{ reclamation.statut }}</td>
+                    <td>
+                        <a href="{{ path('reclamation_edit', {'id': reclamation.id}) }}" class="btn btn-sm btn-primary">Modifier</a>
+                        <a href="{{ path('reclamation_delete', {'id': reclamation.id}) }}" class="btn btn-sm btn-danger">Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
