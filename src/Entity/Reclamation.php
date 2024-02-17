@@ -28,6 +28,12 @@ class Reclamation
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_en_jour = null;
 
+    #[ORM\OneToOne(mappedBy: 'id_reclamation', cascade: ['persist', 'remove'])]
+    private ?Reponse $reponse = null;
+
+    #[ORM\OneToOne(mappedBy: 'id_reclamation', cascade: ['persist', 'remove'])]
+    private ?Reponse $no = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -80,4 +86,40 @@ class Reclamation
 
         return $this;
     }
+
+    public function getReponse(): ?Reponse
+    {
+        return $this->reponse;
+    }
+
+    public function setReponse(Reponse $reponse): static
+    {
+        // set the owning side of the relation if necessary
+        if ($reponse->getIdReclamation() !== $this) {
+            $reponse->setIdReclamation($this);
+        }
+
+        $this->reponse = $reponse;
+
+        return $this;
+    }
+
+    public function getNo(): ?Reponse
+    {
+        return $this->no;
+    }
+
+    public function setNo(Reponse $no): static
+    {
+        // set the owning side of the relation if necessary
+        if ($no->getIdReclamation() !== $this) {
+            $no->setIdReclamation($this);
+        }
+
+        $this->no = $no;
+
+        return $this;
+    }
+    public function __toString() { return strval($this->id); }
+
 }
