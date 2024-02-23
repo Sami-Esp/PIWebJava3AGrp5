@@ -1,0 +1,38 @@
+{%  extends  'base.html.twig'  %}
+{%block body%}
+<h1>Liste des evenements</h1>
+<div  style="display: flex;align-items: left;justify-content:left;margin-top: -200px; padding: 300px;">
+<table border="3" height=150>
+    <tr>
+        <th width=30></th>
+        <td>id</td>
+        <th width=300></th>
+        <td>nom</td>
+        <th width=300></th>
+        <td>date</td>
+        <th width=3000></th>
+        <td>lieu</td>
+        <th width=300></th>
+        <td>description</td>
+        
+    </tr>
+    {% for e in Evenements %}
+    <tr>
+        <th width=30></th>
+        <td>{{e.id}}</td>
+        <th width=300></th>
+        <td>{{e.nom | upper}}</td>
+        <th width=300></th>
+        <td nowrap>{{e.date|date('d-m-Y')}}</td>
+        <th width=300></th>
+        <td nowrap>{{e.lieu}}</td>
+        <th width=3000></th>
+        <td nowrap>{{e.description}}</td>
+        <th width=3000></th>
+        <td><a href="{{path('addParticipants',{'id':e.id})}}">Participer</a></td>
+        <th width=3000></th>    
+        <td><a href="{{path('addSponsors',{'id':e.id})}}">Sponsoriser</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{%endblock%}

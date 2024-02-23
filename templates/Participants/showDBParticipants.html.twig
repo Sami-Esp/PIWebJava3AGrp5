@@ -1,0 +1,38 @@
+{%  extends  'base.html.twig'  %}
+{%block body%}
+<h1>Liste des participants</h1>
+<div  style="display: flex;align-items: left;justify-content:left;margin-top: -200px; padding: 300px;">
+<table border="3" height=150>
+    <tr>
+        <td>id</td>
+        <th width=3000></th>
+        <td>nom</td>
+        <th width=3000></th>
+        <td>prenom</td>
+        <th width=3000></th>
+        <td>email</td>
+        <th width=3000></th>
+        <td>telephone</td>
+        <th width=3000></th>
+        <td>Evenementp</td>
+        
+    </tr>
+    {% for p in Participants %}
+    <tr>
+        <td>{{p.id}}</td>
+        <th width=3000></th>
+        <td>{{p.nom | upper}}</td>
+        <th width=3000></th>
+        <td>{{p.prenom}}</td>
+        <th width=3000></th>
+        <td>{{p.email}}</td>
+        <th width=3000></th>
+        <td>{{p.telephone}}</td>
+        <th width=3000></th>
+        <td>{{p.Evenementp.id}}</td>
+        <td><a href="{{path('editParticipants',{'id':p.id})}}">modifier</a></td>
+        <td><a href="{{path('deleteParticipants',{'id':p.id})}}">supprimer</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{%endblock%}
