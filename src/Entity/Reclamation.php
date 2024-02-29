@@ -6,11 +6,19 @@ use App\Repository\ReclamationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\UX\Turbo\Attribute\Broadcast;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Validator\Constraints as Assert;
+
+
 
 #[ORM\Entity(repositoryClass: ReclamationRepository::class)]
 #[Broadcast]
 class Reclamation
 {
+    const STATUS_ENVOYE = 'envoyé';
+    const STATUS_VU = 'vu';
+    const STATUS_REPONDU = 'Répondu';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -22,10 +30,17 @@ class Reclamation
     #[ORM\Column(type: Types::BIGINT)]
     private ?string $id_utilisateur = null;
 
+ 
     #[ORM\Column(length: 255)]
+     
     private ?string $statut = null;
 
+
+
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\Range(min:'yesterday',max:'tomorrow' ,minMessage:"date different de date systeme")]
+
+    
     private ?\DateTimeInterface $date_en_jour = null;
 
     #[ORM\OneToOne(mappedBy: 'id_reclamation', cascade: ['persist', 'remove'])]
@@ -70,6 +85,11 @@ class Reclamation
 
     public function setStatut(string $statut): static
     {
+        // Make sure the provided status is one of the allowed values
+        if (!in_array($statut, [self::STATUS_ENVOYE, self::STATUS_VU, self::STATUS_REPONDU])) {
+            throw new \InvalidArgumentException("Invalid status provided.");
+        }
+
         $this->statut = $statut;
 
         return $this;

@@ -15,11 +15,35 @@ use Symfony\Component\Routing\Annotation\Route;
 class ReclamationController extends AbstractController
 {
     #[Route('/', name: 'app_reclamation_index', methods: ['GET'])]
-    public function index(ReclamationRepository $reclamationRepository): Response
+    public function index(ReclamationRepository $reclamationRepository, Request $request): Response
     {
+        $page = $request->query->getInt('page', 1); // Get current page from query string (default 1)
+        $totalReclamations = count($reclamationRepository->findAll()); // Get total number of reclamations
+    
+        $perPage = 5; // Set the number of elements per page
+    
+        $totalPages = ceil($totalReclamations / $perPage); // Calculate total pages
+    
+        $offset = ($page - 1) * $perPage; // Calculate offset for the current page
+    
+        $reclamations = $reclamationRepository->findBy([], [], $perPage, $offset); // Fetch reclamations with limit and offset
+    
         return $this->render('reclamation/index.html.twig', [
-            'reclamations' => $reclamationRepository->findAll(),
+            'reclamations' => $reclamations,
+            'page' => $page,
+            'total_pages' => $totalPages,
         ]);
+    }
+    #[Route('/listpdf', name: 'app_reclamation_listpdf', methods: ['GET'])]
+    public function listpdf(ReclamationRepository $reclamationRepository): Response
+    {
+        
+        $reclamations = $reclamationRepository->findAll(); // Fetch reclamations with limit and offset
+    
+        return $this->render('reclamation/listpdf.html.twig', [
+            'reclamations' => $reclamations,
+        ]);
+       
     }
 
     #[Route('/new', name: 'app_reclamation_new', methods: ['GET', 'POST'])]
@@ -49,7 +73,7 @@ class ReclamationController extends AbstractController
             'reclamation' => $reclamation,
         ]);
     }
-
+  
     #[Route('/{id}/edit', name: 'app_reclamation_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Reclamation $reclamation, EntityManagerInterface $entityManager): Response
     {

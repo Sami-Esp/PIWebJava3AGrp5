@@ -1,0 +1,33 @@
+
+{% block body %}
+  <h1>Liste des Reclamations</h1>
+  <br>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Contenu</th>
+        <th>Id_utilisateur</th>
+        <th>Statut</th>
+        <th>Date_en_jour</th>
+        <th>actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for reclamation in reclamations %}
+      <tr>
+        <td>{{ reclamation.id }}</td>
+        <td>{{ reclamation.contenue }}</td>
+        <td>{{ reclamation.idUtilisateur }}</td>
+        <td>{{ reclamation.statut }}</td>
+        <td>{{ reclamation.dateEnJour ? reclamation.dateEnJour|date('Y-m-d') : '' }}</td>
+    
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  
+
+{% endblock %}

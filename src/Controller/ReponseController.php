@@ -15,12 +15,27 @@ use Symfony\Component\Routing\Annotation\Route;
 class ReponseController extends AbstractController
 {
     #[Route('/', name: 'app_reponse_index', methods: ['GET'])]
-    public function index(ReponseRepository $reponseRepository): Response
+    public function index(ReponseRepository $reponseRepository, Request $request): Response
     {
+        $page = $request->query->getInt('page', 1); // Get current page from query string (default 1)
+        $totalReponses = count($reponseRepository->findAll()); // Get total number of reponses
+    
+        $perPage = 5; // Set the number of elements per page
+    
+        $totalPages = ceil($totalReponses / $perPage); // Calculate total pages
+    
+        $offset = ($page - 1) * $perPage; // Calculate offset for the current page
+    
+        $reponses = $reponseRepository->findBy([], [], $perPage, $offset); // Fetch reponses with limit and offset
+    
         return $this->render('reponse/index.html.twig', [
-            'reponses' => $reponseRepository->findAll(),
+            'reponses' => $reponses,
+            'page' => $page,
+            'total_pages' => $totalPages,
         ]);
     }
+    
+
 
     #[Route('/new', name: 'app_reponse_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response

@@ -1,13 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Reclamation{% endblock %}
+
+
 
 {% block body %}
-    <h1>Edit Reclamation</h1>
+<div  style="display: flex;justify-content: center;">
+<h1>Edit Reclamation</h1>
+<div  style="display: flex;align-items: center;justify-content: center;margin-top: 150px; padding: 10px;">
 
-    {{ include('reclamation/_form.html.twig', {'button_label': 'Update'}) }}
+ 
+    
 
-    <a href="{{ path('app_reclamation_index') }}">back to list</a>
+    {{ include('reclamation/_form.html.twig', {'submit': 'Update'}) }}
+
+    <a href="{{ path('app_reclamation_index') }}" <button type="submit" class="btn btn-primary">retourner a la liste</a>
 
     {{ include('reclamation/_delete_form.html.twig') }}
 {% endblock %}

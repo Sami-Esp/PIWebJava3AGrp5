@@ -5,6 +5,9 @@ namespace App\Entity;
 use App\Repository\ReponseRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\UX\Turbo\Attribute\Broadcast;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReponseRepository::class)]
 class Reponse
@@ -17,7 +20,10 @@ class Reponse
     #[ORM\Column(length: 255)]
     private ?string $contenu = null;
 
+   
+
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\Range(min:'yesterday',max:'tomorrow' ,minMessage:"date different de date systeme")]
     private ?\DateTimeInterface $date = null;
 
     #[ORM\OneToOne(inversedBy: 'no', cascade: ['persist', 'remove'])]

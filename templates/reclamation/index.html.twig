@@ -3,39 +3,70 @@
 {% block title %}Reclamation index{% endblock %}
 
 {% block body %}
-    <h1>Reclamation index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Contenu</th>
-                <th>Id_utilisateur</th>
-                <th>Statut</th>
-                <th>Date_en_jour</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for reclamation in reclamations %}
-            <tr>
-                <td>{{ reclamation.id }}</td>
-                <td>{{ reclamation.contenue }}</td>
-                <td>{{ reclamation.idUtilisateur }}</td>
-                <td>{{ reclamation.statut }}</td>
-                <td>{{ reclamation.dateEnJour ? reclamation.dateEnJour|date('Y-m-d') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_reclamation_show', {'id': reclamation.id}) }}">show</a>
-                    <a href="{{ path('app_reclamation_edit', {'id': reclamation.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<div style="display: flex;align-items: center;justify-content:center;margin-top: -1000px; padding: 1000px;">
+  <h1>Liste des Reclamations</h1>
+  <br>
 
-    <a href="{{ path('app_reclamation_new') }}">Create new</a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Contenu</th>
+        <th>Id_utilisateur</th>
+        <th>Statut</th>
+        <th>Date_en_jour</th>
+        <th>actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for reclamation in reclamations %}
+      <tr>
+        <td>{{ reclamation.id }}</td>
+        <td>{{ reclamation.contenue }}</td>
+        <td>{{ reclamation.idUtilisateur }}</td>
+        <td>{{ reclamation.statut }}</td>
+        <td>{{ reclamation.dateEnJour ? reclamation.dateEnJour|date('Y-m-d') : '' }}</td>
+        <td>
+          <a href="{{ path('app_reclamation_show', {'id': reclamation.id}) }}" <button type="submit" class="btn btn-primary">Afficher</a>
+
+          <a href="{{ path('app_reclamation_edit', {'id': reclamation.id}) }}" <button type="submit" class="btn btn-primary">modifier</a>
+        
+         {% if reclamation.reponse is empty %}
+          <a href="{{ path('app_reponse_new') }}" <button type="submit" class="btn btn-primary">Créer une Reponse</a>
+                        {% else %}
+        <a href="{{ path('app_reponse_index') }}" <button type="submit" class="btn btn-primary">Modifier une Reponse</a>
+                          
+                        {% endif %}
+      </tr>
+      {% endfor %}
+      </td>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-center">
+    <ul class="pagination">
+      {% if page > 1 %}
+      <li class="page-item">
+        <a class="page-link" href="{{ path('app_reclamation_index', {'page': page - 1}) }}">Previous</a>
+      </li>
+      {% endif %}
+
+      {% for i in 1..total_pages %}
+      <li class="page-item {% if page == i %}active{% endif %}">
+        <a class="page-link" href="{{ path('app_reclamation_index', {'page': i}) }}">{{ i }}</a>
+      </li>
+      {% endfor %}
+
+      {% if page < total_pages %}
+      <li class="page-item">
+        <a class="page-link" href="{{ path('app_reclamation_index', {'page': page + 1}) }}">Next</a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+
+  <a href="{{ path('app_reclamation_new') }}" <button type="submit" class="btn btn-primary">Créer une Reclamation</a>
+</div>
+
 {% endblock %}
