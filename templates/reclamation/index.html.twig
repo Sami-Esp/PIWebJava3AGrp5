@@ -48,7 +48,7 @@
     <ul class="pagination">
       {% if page > 1 %}
       <li class="page-item">
-        <a class="page-link" href="{{ path('app_reclamation_index', {'page': page - 1}) }}">Previous</a>
+        <a class="page-link" href="{{ path('app_reclamation_index', {'page': page - 1}) }}">page Precedante</a>
       </li>
       {% endif %}
 
@@ -60,13 +60,28 @@
 
       {% if page < total_pages %}
       <li class="page-item">
-        <a class="page-link" href="{{ path('app_reclamation_index', {'page': page + 1}) }}">Next</a>
+        <a class="page-link" href="{{ path('app_reclamation_index', {'page': page + 1}) }}">page suivante</a>
       </li>
       {% endif %}
     </ul>
   </div>
 
   <a href="{{ path('app_reclamation_new') }}" <button type="submit" class="btn btn-primary">Créer une Reclamation</a>
+<a href="{{ path('app_reclamation_listpdf') }}" <button type="submit" class="btn btn-primary">Exporter en PDF</a>
+
+  
+<html lang="en">
+<head>
+ 
+</head>
+
+</body>
+</html>
+
+  
+
 </div>
+
+
 
 {% endblock %}

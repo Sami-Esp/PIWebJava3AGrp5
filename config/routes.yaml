@@ -3,4 +3,8 @@
 #     controller: App\Controller\RefaultController::index
 #     methods: ['GET']
 
+#app_record_audio:
+ #   path: '/reclamation/{id}/record-audio'
+  #  controller: App\Controller\ReclamationController::recordAudio
+
 # Ajoutez les routes pour les autres actions (edit, update, delete) ici

@@ -1,5 +1,10 @@
 
+
+{% block title %}Reclamation index{% endblock %}
+
 {% block body %}
+
+
   <h1>Liste des Reclamations</h1>
   <br>
 
@@ -11,7 +16,7 @@
         <th>Id_utilisateur</th>
         <th>Statut</th>
         <th>Date_en_jour</th>
-        <th>actions</th>
+        
       </tr>
     </thead>
     <tbody>
@@ -22,12 +27,29 @@
         <td>{{ reclamation.idUtilisateur }}</td>
         <td>{{ reclamation.statut }}</td>
         <td>{{ reclamation.dateEnJour ? reclamation.dateEnJour|date('Y-m-d') : '' }}</td>
-    
+        <td>
+       
+         
       </tr>
       {% endfor %}
+      </td>
     </tbody>
   </table>
 
+
   
+<html lang="en">
+<head>
+ 
+</head>
+
+</body>
+</html>
+
+  
+
+</div>
+
+
 
 {% endblock %}
