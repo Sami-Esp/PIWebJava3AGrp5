@@ -19,6 +19,13 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+    
+    Doctrine\Persistence\ObjectManager: '@doctrine.orm.default_entity_manager'
+
+    #Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface: '@security.password_encoder'
+     #   public: true
+
+    #Symfony\Component\DependencyInjection\ContainerInterface: '@service_container'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

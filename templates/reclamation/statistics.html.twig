@@ -1,0 +1,20 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistiques{% endblock %}
+
+{% block body %}
+    <h1>Statistiques des réclamations par jour</h1>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Nombre de réclamations</th>
+        </tr>
+        {% for date, count in statistics %}
+            <tr>
+                <td>{{ date }}</td>
+                <td>{{ count }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
