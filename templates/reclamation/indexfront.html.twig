@@ -166,20 +166,91 @@
 
 
     <!-- About Start -->
-   {% block title %}
-New Reclamation{% endblock %}
+   {% block title %}Reclamation index{% endblock %}
 
 {% block body %}
-     <div  style="display: flex;align-items: center;justify-content: center;margin-top: 150px; padding: 10px;">
-    <h1>Crée une Reclamation</h1>
 
-    {{ include('reclamation/_form.html.twig') }}
- <div class="col-sm-10">
-    <a href="{{ path('app_reclamation_indexfront') }}" <button type="submit" class="btn btn-primary">retourner a la liste</a>
-   
-       
-{% endblock %}
+<div style="display: flex;align-items: center;justify-content:center;margin-top: -1000px; padding: 1000px;">
+  <h1>Liste des Reclamations</h1>
+  <br>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Contenu</th>
+        <th>Id_utilisateur</th>
+        <th>Statut</th>
+        <th>Date_en_jour</th>
+        <th>actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for reclamation in reclamations %}
+      <tr>
+        <td>{{ reclamation.id }}</td>
+        <td>{{ reclamation.contenue }}</td>
+        <td>{{ reclamation.idUtilisateur }}</td>
+        <td>{{ reclamation.statut }}</td>
+        <td>{{ reclamation.dateEnJour ? reclamation.dateEnJour|date('Y-m-d') : '' }}</td>
+        <td>
+          <a href="{{ path('app_reclamation_show', {'id': reclamation.id}) }}" <button type="submit" class="btn btn-primary">Afficher</a>
+
+          <a href="{{ path('app_reclamation_edit', {'id': reclamation.id}) }}" <button type="submit" class="btn btn-primary">modifier</a>
+        
+         {% if reclamation.reponse is empty %}
+          <a href="{{ path('app_reponse_new') }}" <button type="submit" class="btn btn-primary">Créer une Reponse</a>
+                        {% else %}
+        <a href="{{ path('app_reponse_index') }}" <button type="submit" class="btn btn-primary">Modifier une Reponse</a>
+                          
+                        {% endif %}
+      </tr>
+      {% endfor %}
+      </td>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-center">
+    <ul class="pagination">
+      {% if page > 1 %}
+      <li class="page-item">
+        <a class="page-link" href="{{ path('app_reclamation_index', {'page': page - 1}) }}">page Precedante</a>
+      </li>
+      {% endif %}
+
+      {% for i in 1..total_pages %}
+      <li class="page-item {% if page == i %}active{% endif %}">
+        <a class="page-link" href="{{ path('app_reclamation_index', {'page': i}) }}">{{ i }}</a>
+      </li>
+      {% endfor %}
+
+      {% if page < total_pages %}
+      <li class="page-item">
+        <a class="page-link" href="{{ path('app_reclamation_index', {'page': page + 1}) }}">page suivante</a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+
+  <a href="{{ path('app_reclamation_newfront') }}" <button type="submit" class="btn btn-primary">Créer une Reclamation</a>
+<a href="{{ path('app_reclamation_listpdf') }}" <button type="submit" class="btn btn-primary">Exporter en PDF</a>
+
+  
+<html lang="en">
+<head>
  
+</head>
+
+</body>
+</html>
+
+  
+
+</div>
+
+
+
+{% endblock %}
 
     <!-- About End -->
 

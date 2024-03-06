@@ -45,6 +45,27 @@ class ReclamationController extends AbstractController
             'total_pages' => $totalPages,
         ]);
         }
+
+    #[Route('/indexfront', name: 'app_reclamation_indexfront', methods: ['GET'])]
+    public function indexfront(ReclamationRepository $reclamationRepository, Request $request): Response
+    {
+        $page = $request->query->getInt('page', 1); // Get current page from query string (default 1)
+        $totalReclamations = count($reclamationRepository->findAll()); // Get total number of reclamations
+    
+        $perPage = 5; // Set the number of elements per page
+    
+        $totalPages = ceil($totalReclamations / $perPage); // Calculate total pages
+    
+        $offset = ($page - 1) * $perPage; // Calculate offset for the current page
+    
+        $reclamations = $reclamationRepository->findBy([], [], $perPage, $offset); // Fetch reclamations with limit and offset
+    
+        return $this->render('reclamation/indexfront.html.twig', [
+            'reclamations' => $reclamations,
+            'page' => $page,
+            'total_pages' => $totalPages,
+        ]);
+    }
    /*
 #[Route('/listpdf', name: 'app_reclamation_listpdf', methods: ['GET'])]
         public function index1(ReclamationRepository $reclamationRepository, Request $request): Response
@@ -149,7 +170,7 @@ public function downloadcertif(ReclamationRepository $reclamationRepository)
             return $this->redirectToRoute('app_reclamation_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('reclamation/new.html.twig', [
+        return $this->renderForm('reclamation/newfront.html.twig', [
             'reclamation' => $reclamation,
             'form' => $form,
         ]);
