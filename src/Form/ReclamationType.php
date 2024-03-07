@@ -7,13 +7,15 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ReclamationType extends AbstractType
 {
+   
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('contenue', null, [
+        ->add('contenue', TextareaType::class, [
             'label' => 'Contenu de la réclamation',
             'attr' => ['class' => 'form-control mb-3', 'rows' => 8] // Par exemple, 8 lignes
         ])
