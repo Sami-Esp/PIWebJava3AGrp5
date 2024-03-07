@@ -183,6 +183,13 @@ public function downloadcertif(ReclamationRepository $reclamationRepository)
             'reclamation' => $reclamation,
         ]);
     }
+    #[Route('/{id}', name: 'front', methods: ['GET'])]
+    public function showfront(Reclamation $reclamation): Response
+    {
+        return $this->render('reclamation/showfront.html.twig', [
+            'reclamation' => $reclamation,
+        ]);
+    }
   
     #[Route('/{id}/edit', name: 'app_reclamation_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Reclamation $reclamation, EntityManagerInterface $entityManager): Response

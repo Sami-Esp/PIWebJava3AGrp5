@@ -23,7 +23,7 @@ class Reponse
    
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    #[Assert\Range(min:'yesterday',max:'tomorrow' ,minMessage:"date different de date systeme")]
+    #[Assert\Range(min:'yesterday', max:'tomorrow', notInRangeMessage:"date differente de date systeme")]
     private ?\DateTimeInterface $date = null;
 
     #[ORM\OneToOne(inversedBy: 'no', cascade: ['persist', 'remove'])]
