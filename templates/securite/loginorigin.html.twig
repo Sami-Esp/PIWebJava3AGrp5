@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div  style="display: flex;align-items: center;justify-content:center;margin-top: 75px; padding: 200px;">
+        <h1>Connexion</h1>
+
+        <form action="{{ path('app_securite_login') }}" method="post",{'attr': {'novalidate': 'novalidate'}}>
+            <label for="username">Email:</label>
+            <input type="text" id="username" name="_username" value="{{ last_username }}">
+
+            <label for="password">Mot de passe:</label>
+            <input type="password" id="password" name="_password">
+
+            {# If you want to control the URL the user is redirected to on success
+            <input type="hidden" name="_target_path" value="/account"> #}
+
+            <button type="submit">Connexion</button>
+            <a href="{{ path('app_baseuer') }}" class="btn btn-primary">Retour</a>
+        </form>
+        
+    </div>
+{% endblock %}
