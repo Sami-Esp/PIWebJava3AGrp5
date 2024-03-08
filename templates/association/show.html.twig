@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+    <h1>Association</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ association.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ association.nom }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ association.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ association.email }}</td>
+            </tr>
+            <tr>
+                <th>Lieu</th>
+                <td>{{ association.lieu }}</td>
+            </tr>
+            <tr>
+                <th>CodePostal</th>
+                <td>{{ association.codePostal }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ association.description }}</td>
+            </tr>
+            <tr>
+                
+                
+                <img src="{{ asset('uploads/'~association.photo) }}" alt="Photo de l'association" class="img-thumbnail" style="max-width: 200px; max-height: 200px;">
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_association_index') }}" class="btn btn-primary">Retourner à la liste</a>
+
+<a href="{{ path('app_association_edit', {'id': association.id}) }}" class="btn btn-success">Modifier</a>
+
+<a href="{{ path('app_pdf_generator', {'id': association.id}) }}" class="btn btn-danger">PDF</a>
+
+<br>
+<br>
+
+    {{ include('association/_delete_form.html.twig') }}
+{% endblock %}

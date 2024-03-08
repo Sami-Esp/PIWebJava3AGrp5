@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Don{% endblock %}
+
+{% block body %}
+    {% block nompage %}modifier don{% endblock %}
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center mb-4">Formulaire pour modifier un don</h5>
+                        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                        <div class="mb-3">
+                            {{ form_row(form.nom, {'attr': {'class': 'form-control'}, 'id': 'nom'}) }}
+                            {{ form_errors(form.nom) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.prenom, {'attr': {'class': 'form-control'}, 'id': 'prenom'}) }}
+                            {{ form_errors(form.prenom) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.email, {'attr': {'class': 'form-control'}, 'id': 'email'}) }}
+                            {{ form_errors(form.email) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.telephone, {'attr': {'class': 'form-control'}, 'id': 'telephone'}) }}
+                            {{ form_errors(form.telephone) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.type, {'attr': {'class': 'form-control'}, 'id': 'type'}) }}
+                        </div>
+                        <div id="ArgentField" style="display:none;">
+                            <div class="mb-3">
+                                {{ form_row(form.montant, {'attr': {'class': 'form-control'}, 'id': 'montant'}) }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form_row(form.modeDePaiement, {'attr': {'class': 'form-control'}, 'id': 'modeDePaiement'}) }}
+                            </div>
+                        </div>
+                        <div id="objetField" style="display:none;">
+                            <div class="mb-3">
+                                {{ form_row(form.categorie, {'attr': {'class': 'form-control'}, 'id': 'categorie'}) }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form_row(form.etat, {'attr': {'class': 'form-control'}, 'id': 'etat'}) }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form_row(form.commentaire, {'attr': {'class': 'form-control'}, 'id': 'commentaire'}) }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form_row(form.label, {'attr': {'class': 'form-control'}, 'id': 'label'}) }}
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('type').addEventListener('change', function () {
+            var type = this.value;
+            if (type === 'Argent') {
+                document.getElementById('ArgentField').style.display = 'block';
+                document.getElementById('objetField').style.display = 'none';
+            } else if (type === 'objet') {
+                document.getElementById('ArgentField').style.display = 'none';
+                document.getElementById('objetField').style.display = 'block';
+            }
+        });
+    </script>
+{% endblock %}
