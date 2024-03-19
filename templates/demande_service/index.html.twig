@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demande un Service {% endblock %}
+
+{% block body %}
+    <h1>Demande de Service index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Email</th>
+                <th>Telephone</th>
+                <th>DateDemande</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for demande_service in demande_services %}
+            <tr>
+                <td>{{ demande_service.id }}</td>
+                <td>{{ demande_service.nom }}</td>
+                <td>{{ demande_service.prenom }}</td>
+                <td>{{ demande_service.email }}</td>
+                <td>{{ demande_service.telephone }}</td>
+                <td>{{ demande_service.dateDemande ? demande_service.dateDemande|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_demande_service_show', {'id': demande_service.id}) }}" class="btn btn-info">show</a>
+                    <a href="{{ path('app_demande_service_edit', {'id': demande_service.id}) }}" class="btn btn-success">edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

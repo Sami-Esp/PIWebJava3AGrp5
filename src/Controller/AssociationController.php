@@ -12,15 +12,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Dompdf\Dompdf;
 use Dompdf\Options;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\File;
+
+
 use Symfony\Component\String\Slugger\SluggerInterface;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
-use VictorPrad\RecaptchaBundle\Validator\Constraints as Recaptcha;
+
 use Knp\Component\Pager\PaginatorInterface;
 
 #[Route('/association')]
@@ -107,10 +104,6 @@ class AssociationController extends AbstractController
         $a = new Association();
         $form = $this->createForm(AssociationType::class, $a);
         $form->handleRequest($request);
-
-        
-
-
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($a);
             $entityManager->flush();
@@ -231,7 +224,7 @@ class AssociationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($association);
+          
             $entityManager->flush();
             
             return $this->redirectToRoute('app_association_index', [], Response::HTTP_SEE_OTHER);

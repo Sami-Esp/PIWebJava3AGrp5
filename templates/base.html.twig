@@ -214,12 +214,12 @@
           <ul id="table-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
               <a href="{{ path('app_don_index')}}">
-                <i class="bi bi-circle"></i><span>Liste Don</span>
+                <i class="bi bi-circle"></i><span>Liste Dons</span>
               </a>
             </li>
             <li>
               <a href="{{ path('app_association_index')}}">
-                <i class="bi bi-circle"></i><span>Liste Association</span>
+                <i class="bi bi-circle"></i><span>Liste Associations</span>
               </a>
             </li>
             <li>
@@ -245,25 +245,25 @@
         
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-gem"></i><span>Icons</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="bi bi-gem"></i><span>Service</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <a href="icons-bootstrap.html">
-                <i class="bi bi-circle"></i><span>Bootstrap Icons</span>
+              <a href="{{ path('app_service_index')}}">
+                <i class="bi bi-arrow-left-right"></i><span>Liste Service</span>
               </a>
             </li>
             <li>
-              <a href="icons-remix.html">
-                <i class="bi bi-circle"></i><span>Remix Icons</span>
+              <a href="{{ path('app_demande_service_index')}}">
+                <i class="bi bi-circle"></i><span>Liste Demande Services</span>
               </a>
             </li>
+            <a href="{{ path('app_service_new')}}">
+              <i class="bi bi-circle"></i><span>Ajouter Service</span>
+            </a>
+          </li>
            
-            <li class="nav-item">
-              <a class="nav-link collapsed" data-bs-target="#table-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-house"></i><span>Chartjs</span><i class="bi bi-chevron-down ms-auto"></i>
-              </a>
-            </li>
+            
           </ul>
         </li><!-- End Icons Nav -->
   
