@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Stella Fortuna - Stella Fortuna Website Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="{{asset('base/img/favicon.ico')}}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="{{asset('base/lib/owlcarousel/assets/owl.carousel.min.css')}}" >
+    <link rel="stylesheet" href="{{asset('base/lib/animate/animate.min.css')}}" >
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link rel="stylesheet" href="{{asset('base/css/bootstrap.min.css')}}" >
+
+    <!-- Template Stylesheet -->
+    <link rel="stylesheet" href="{{asset('base/css/style.css')}}" >
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner"></div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Topbar End -->
+
+
+    <!-- Navbar & Carousel Start -->
+    <div class="container-fluid position-relative p-0">
+        <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+            <a href="/baseuer" class="navbar-brand p-0">
+                <div class="d-inline-flex align-items-center">
+                    <img class="circular-image" src="{{asset('base/img/logo.jpg')}}" height="50" width="65" alt="">
+                    <h1 class="mb-0 ms-3">Stella Fortuna</h1>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    
+                     {% if not app.user %}
+                    <li class="nav-item">
+                        {#<a href="{{ path=('app_securite_login') }}" class="nav-link">Connexion</a>#}
+                        <a href="/pages-login.html" class="nav-link">Connexion</a>
+                    </li>
+                    <li class="nav-item">
+                        {#<a href="{{ path=('app_securite_registration') }}" class="nav-link">Inscription</a>#}
+                        <a href="/pages-register.html" class="nav-link">Inscription</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        {#<a href="{{ paths=('app_securite_logout') }}" class="nav-link">Déconnexion</a>#}
+                        <a href="/deconnexion" class="nav-link">Déconnexion</a>
+                    </li>
+                    {# les bouton pour accéder aux pages des autres modules #} 
+                    <li class="nav-item">
+                        <a href="/showEvenements" class="nav-link">Liste Evenements</a>
+                    </li>
+                    {% endif %} 
+                    {#<div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="price.html" class="dropdown-item">Pricing Plan</a>
+                            <a href="feature.html" class="dropdown-item">Our features</a>
+                            <a href="team.html" class="dropdown-item">Team Members</a>
+                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                            <a href="quote.html" class="dropdown-item">Free Quote</a>
+                        </div>#}
+                   
+            </div>
+        </nav>
+
+        <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="w-100" src="{{asset('base/img/ta.jpg')}}" alt="Image">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        
+                    <div class="p-3" style="max-width: 900px;">
+                        <h1 class="display-1 text-white mb-md-4 animated zoomIn"><Participation></h1>
+                        {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+
+                        {{ form_row(form.nom, {'label': 'Nom','attr': {'placeholder': 'Ben Arous ...'}}) }}
+                        {{ form_row(form.prenom, {'label': 'Prenom','attr': {'placeholder': 'Mohamed ...'}}) }}
+                        {{ form_row(form.email, {'label': 'Adresse email','attr': {'placeholder': 'prenom.nom@gmail.com ...'}}) }}
+                        {{ form_row(form.telephone, {'label': 'Téléphone','attr': {'placeholder': 'Numéro de téléphone'}}) }}
+
+
+                        <button type="submit" class="btn btn-success">Confirmer</button>
+                        <a href="{{ path('app_baseuer') }}" class="btn btn-primary">Retour</a>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+               
+            </div>
+           
+        </div>
+    </div>
+    <!-- Navbar & Carousel End -->
+
+
+    <!-- Full Screen Search Start -->
+    <div class="modal fade" id="searchModal" tabindex="-1">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content" style="background: rgba(9, 30, 62, .7);">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex align-items-center justify-content-center">
+                    <div class="input-group" style="max-width: 600px;">
+                        <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="Type search keyword">
+                        <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <!-- Full Screen Search End -->
+
+    <!-- Facts Start -->
+    {#<div class="container-fluid facts py-5 pt-lg-0">
+        <div class="container py-5 pt-lg-0">
+            <div class="row gx-0">
+                <div class="col-lg-4 wow zoomIn" data-wow-delay="0.1s">
+                    <div class="bg-primary shadow d-flex align-items-center justify-content-center p-4" style="height: 150px;">
+                        <div class="bg-white d-flex align-items-center justify-content-center rounded mb-2" style="width: 60px; height: 60px;">
+                            <i class="fa fa-users text-primary"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="text-white mb-0">Happy Clients</h5>
+                            <h1 class="text-white mb-0" data-toggle="counter-up">12345</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 wow zoomIn" data-wow-delay="0.3s">
+                    <div class="bg-light shadow d-flex align-items-center justify-content-center p-4" style="height: 150px;">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded mb-2" style="width: 60px; height: 60px;">
+                            <i class="fa fa-check text-white"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="text-primary mb-0">Projects Done</h5>
+                            <h1 class="mb-0" data-toggle="counter-up">12345</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 wow zoomIn" data-wow-delay="0.6s">
+                    <div class="bg-primary shadow d-flex align-items-center justify-content-center p-4" style="height: 150px;">
+                        <div class="bg-white d-flex align-items-center justify-content-center rounded mb-2" style="width: 60px; height: 60px;">
+                            <i class="fa fa-award text-primary"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="text-white mb-0">Win Awards</h5>
+                            <h1 class="text-white mb-0" data-toggle="counter-up">12345</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>#}
+    <!-- Facts Start -->
+
+ 
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+{#<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>#}
+<script src="{{ asset('base/lib/wow/wow.min.js') }}"></script>
+<script src="{{ asset('base/lib/easing/easing.min.js') }}"></script>
+<script src="{{ asset('base/lib/waypoints/waypoints.min.js') }}"></script>
+<script src="{{ asset('base/lib/counterup/counterup.min.js') }}"></script>
+<script src="{{ asset('base/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+
+
+<script src="{{ asset('base/js/main.js')}}"></script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+{%  extends  'base.html.twig'  %}
+{%block body%}
+<Center><h1>Liste des sponsors</h1></cENTER>
+<div  style="display: flex;align-items: left;justify-content:left;margin-top: -200px; padding: 300px;">
+<table border="3" height=150>
+    <tr>
+        <td>id</td>
+        <th width=3000></th>
+        <td >nom</td>
+        <th width=3000></th>
+        <td >montant</td>
+        <th width=3000></th>
+        <td>Evenementd</td>
+    </tr>
+    {% for s in Sponsors %}
+    <tr>
+        <td>{{s.id}}</td>
+        <th width=3000></th>
+        <td nowrap>{{s.nom | upper}}</td>
+        <th width=3000></th>
+        <td>{{s.montant}}</td>
+        <th width=3000></th>
+        <td>{{s.Evenementd.nom}}</td>
+        <th width=3000></th>
+        <td><a href="{{path('editSponsors',{'id':s.id})}}">modifier</a></td>
+        <th width=3000></th>
+        <td><a href="{{path('deleteSponsors',{'id':s.id})}}">supprimer</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{%endblock%}

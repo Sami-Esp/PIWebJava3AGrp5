@@ -1,0 +1,27 @@
+{% block container %}
+
+
+<div class="container">  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ demandeservice.getNom() }}</h5>
+      <hr>
+      <table class="table table-striped">
+        <tbody>
+          <tr>
+            <th scope="row" class="font-weight-bold">Prénom:</th>  <td>{{ demandeservice.getPrenom() }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="font-weight-bold">Email:</th>
+            <td>{{ demandeservice.getEmail() }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="font-weight-bold">Téléphone:</th>
+            <td>{{ demandeservice.getTelephone() }}</td>
+          </tr>
+          </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

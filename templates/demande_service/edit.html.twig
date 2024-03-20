@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit DemandeService{% endblock %}
+
+{% block body %}
+{% block nompage %}modifier une Demande de Service{% endblock %}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center mb-4">Formulaire pour ajouter une Demande de Service</h5>
+                    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                    <div class="mb-3">
+                        {{ form_row(form.nom, {'attr': {'class': 'form-control'}, 'id': 'nom'}) }}
+                    </div>
+                  
+                
+                    <div class="mb-3">
+                        {{ form_row(form.prenom, {'attr': {'class': 'form-control'}, 'id': 'prenom'}) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(form.email, {'attr': {'class': 'form-control'}, 'id': 'email'}) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(form.telephone, {'attr': {'class': 'form-control'}, 'id': 'telephone'}) }}
+                    </div>
+                     <div class="mb-3">
+                        {{ form_row(form.dateDemande, {'attr': {'class': 'form-control'}, 'id': 'dateDemande'}) }}
+                    </div>
+                    
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

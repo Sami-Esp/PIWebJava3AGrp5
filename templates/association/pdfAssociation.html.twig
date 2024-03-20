@@ -1,0 +1,100 @@
+{% block container %}
+{% block stylesheets %}
+    <style>
+        .card {
+            width: 80%;
+            margin: 50px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .table {
+            width: 100%;
+            margin-bottom: 1rem;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .table th,
+        .table td {
+            padding: 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .table th {
+            background-color: #f8f9fa;
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #f3f4f7;
+        }
+
+        /* Optional: Adjust spacing between table rows */
+        .table tbody tr {
+            margin-bottom: 10px;
+        }
+
+        /* Optional: Adjust spacing within table cells */
+        .table td,
+        .table th {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        /* Optional: Adjust margin and font size for table headings */
+        .table th {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        /* Optional: Adjust font weight for strong elements */
+        strong {
+            font-weight: bold;
+        }
+    </style>
+{% endblock %}
+
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ association.getNom() }}</h5>
+        <hr>
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <td><strong>Telephone:</strong></td>
+                    <td>{{ association.getTelephone() }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Email:</strong></td>
+                    <td>{{ association.getEmail() }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Lieu:</strong></td>
+                    <td>{{ association.getLieu() }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Code Postal:</strong></td>
+                    <td>{{ association.getCodePostal() }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Description:</strong></td>
+                    <td>{{ association.getDescription() }}</td>
+                </tr>
+                <!-- Add more fields as needed -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

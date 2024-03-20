@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center mb-4">Formulaire pour ajouter un événement</h5>
+                    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                    <div class="mb-3">
+                        {{ form_row(form.nom, {'attr': {'class': 'form-control'}, 'id': 'nom'}) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(form.date, {'attr': {'class': 'form-control'}, 'id': 'date'}) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(form.lieu, {'attr': {'class': 'form-control'}, 'id': 'lieu'}) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(form.description, {'attr': {'class': 'form-control'}, 'id': 'description'}) }}
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Service{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Service</h1>
+
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ service.id }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ service.nom }}</td>
+                </tr>
+                <tr>
+                    <th>Categorie</th>
+                    <td>{{ service.categorie }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ service.description }}</td>
+                </tr>
+                <tr>
+                    <th>DureeService</th>
+                    <td>{{ service.dureeService }}</td>
+                </tr>
+                <tr>
+                    <th>DisponibiliteService</th>
+                    <td>{{ service.disponibiliteService }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a href="{{ path('app_service_index') }}" class="btn btn-primary">Retourner à la liste</a>
+
+        <br>
+
+        <a href="{{ path('app_service_edit', {'id': service.id}) }}" class="btn btn-success">Modifier</a>
+
+        <a href="{{ path('app_service_delete', {'id': service.id}) }}" class="btn btn-danger">Supprimer</a>
+
+    </div>
+{% endblock %}
